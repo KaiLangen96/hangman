@@ -10,28 +10,30 @@ display = []
 lives = 6
 game_over = False
 
-for i in range(len(secret_word)):
-    display += '_'
-print(secret_word)
-print(display)
-
-while not game_over:
-    guessed_letter = input("Guess a letter: ")
-
-    for position in range(len(secret_word)):
-        letter = secret_word[position]
-        if letter == guessed_letter:
-            display[position] = guessed_letter
+if __name__ == "__main__":
+    # Creating display with '_' for each letter
+    for i in range(len(secret_word)):
+        display += '_'
     print(display)
 
-    if guessed_letter not in secret_word:
-        lives -= 1
-        if lives == 0:
-            game_over = True
-            print(hangman_picture.lives_left[lives])
-            print("Game over! You lose!")
+    # Hangman game loop
+    while not game_over:
+        guessed_letter = input("Guess a letter: ")
 
-    if '_' not in display:
-        game_over = True
-        print("Congratulations! You win!")
-    print(hangman_picture.lives_left[lives])
+        for position in range(len(secret_word)):
+            letter = secret_word[position]
+            if letter == guessed_letter:
+                display[position] = guessed_letter
+        print(display)
+
+        if guessed_letter not in secret_word:
+            lives -= 1
+            if lives == 0:
+                game_over = True
+                print(hangman_picture.lives_left[lives])
+                print("Game over! You lose!")
+
+        if '_' not in display:
+            game_over = True
+            print("Congratulations! You win!")
+        print(hangman_picture.lives_left[lives])
