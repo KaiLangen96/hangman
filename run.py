@@ -56,6 +56,27 @@ def update_display(secret_word, guessed_letter, display):
     return display
 
 
+def check_game(guessed_letter, secret_word, display):
+    """
+    Checks the game status after each guess and prints appropriate messages.
+    Returns the game over status.
+    """
+    global lives
+    if guessed_letter not in secret_word:
+        lives -= 1
+        if lives == 0:
+            print(hangman_picture.lives_left[lives])
+            print("Game over! You lose!")
+            return True
+
+    if '_' not in display:
+        print("Congratulations! You win!")
+        return True
+
+    print(hangman_picture.lives_left[lives])
+    return False
+
+
 if __name__ == "__main__":
     display = create_display(secret_word)
     print(display)
@@ -70,14 +91,4 @@ if __name__ == "__main__":
         display = update_display(secret_word, guessed_letter, display)
         print(display)
 
-        if guessed_letter not in secret_word:
-            lives -= 1
-            if lives == 0:
-                game_over = True
-                print(hangman_picture.lives_left[lives])
-                print("Game over! You lose!")
-
-        if '_' not in display:
-            game_over = True
-            print("Congratulations! You win!")
-        print(hangman_picture.lives_left[lives])
+        game_over = check_game(guessed_letter, secret_word, display)
