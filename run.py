@@ -78,17 +78,16 @@ def check_game(guessed_letter, secret_word, display):
 
 
 if __name__ == "__main__":
+    print("\n    Welcome to Hangman!")
+    print(hangman_picture.lives_left[lives])
+    print("Your word is:")
     display = create_display(secret_word)
     print(display)
     # Hangman game loop
     while not game_over:
-
         guessed_letter = guess_letter()
-
         while guessed_letter is False:
             guessed_letter = guess_letter()
-
         display = update_display(secret_word, guessed_letter, display)
         print(display)
-
         game_over = check_game(guessed_letter, secret_word, display)
