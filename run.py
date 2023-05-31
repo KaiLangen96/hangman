@@ -13,6 +13,15 @@ guessed_letter = ''
 already_used = []
 
 
+def create_display(secret_word):
+    """
+    Creates the display string with underscores for each character
+    from secret_word.
+    """
+    display = ['_'] * len(secret_word)
+    return display
+
+
 def guess_letter():
     """
     Getting the guess from the user and checking if
@@ -37,15 +46,13 @@ def guess_letter():
 
 
 if __name__ == "__main__":
-    # Creating display with '_' for each letter
-    for i in range(len(secret_word)):
-        display += '_'
+    display = create_display(secret_word)
     print(display)
-
     # Hangman game loop
     while not game_over:
 
         guessed_letter = guess_letter()
+
         while guessed_letter is False:
             guessed_letter = guess_letter()
 
