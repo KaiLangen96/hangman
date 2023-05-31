@@ -45,6 +45,17 @@ def guess_letter():
     return guessed_letter
 
 
+def update_display(secret_word, guessed_letter, display):
+    """
+    Updates the display based on the guessed letter.
+    """
+    for position in range(len(secret_word)):
+        letter = secret_word[position]
+        if letter == guessed_letter:
+            display[position] = guessed_letter
+    return display
+
+
 if __name__ == "__main__":
     display = create_display(secret_word)
     print(display)
@@ -56,10 +67,7 @@ if __name__ == "__main__":
         while guessed_letter is False:
             guessed_letter = guess_letter()
 
-        for position in range(len(secret_word)):
-            letter = secret_word[position]
-            if letter == guessed_letter:
-                display[position] = guessed_letter
+        display = update_display(secret_word, guessed_letter, display)
         print(display)
 
         if guessed_letter not in secret_word:
