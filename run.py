@@ -114,11 +114,24 @@ def display_game_over_screen(result):
     print("*" * 60)
 
 
+def restart_game():
+    """
+    Resets the game variables for a new game.
+    """
+    global secret_word, display, lives, game_over, guessed_letter, already_used
+    secret_word = random.choice(word_list)
+    display = create_display(secret_word)
+    lives = 6
+    game_over = False
+    guessed_letter = ''
+    already_used = []
+
+
 def clear_screen():
     """
     Function to clear terminal
     """
-    sleep(1.5)
+    sleep(1)
     os.system('cls' if os.name == 'nt' else 'clear')
 
 
@@ -128,7 +141,7 @@ if __name__ == "__main__":
         choice = input("Enter your choice:\n")
 
         if choice == "1":
-            display = create_display(secret_word)
+            restart_game()
             while not game_over:
                 clear_screen()
                 print(hangman_picture.lives_left[lives])
@@ -145,7 +158,7 @@ if __name__ == "__main__":
                         display_game_over_screen(result)
                         choice = input("Enter your choice: ")
                         if choice == "1":
-                            # restart_game()
+                            restart_game()
                             break
                         elif choice == "2":
                             clear_screen()
