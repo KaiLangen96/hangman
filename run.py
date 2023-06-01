@@ -110,7 +110,7 @@ def display_ingame_screen():
     print("*" * 60)
     print(hangman_picture.lives_left[lives])
     print("*" * 60)
-    print("*{:^58}*".format("Your word is:"))
+    print("*{:^58}*".format("Your animal is:"))
     print(display)
     print(f"\033[90mUsed: {already_used}\033[0m")
     print("*" * 60)
