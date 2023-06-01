@@ -3,6 +3,8 @@
 # Write your code to expect a terminal of 80 characters wide and 24 rows high
 import random
 import hangman_picture
+import os
+from time import sleep
 
 word_list = ["test", "monkey", "apple"]
 secret_word = random.choice(word_list)
@@ -97,7 +99,7 @@ def display_game_over_screen(result):
     """
     Displays the game over screen for winning or losing.
     """
-    # clear_screen()
+    clear_screen()
     print("\n" + "*" * 60)
     if result == "win":
         print("*{:^58}*".format("Congratulations! You won!"))
@@ -112,6 +114,14 @@ def display_game_over_screen(result):
     print("*" * 60)
 
 
+def clear_screen():
+    """
+    Function to clear terminal
+    """
+    sleep(1.5)
+    os.system('cls' if os.name == 'nt' else 'clear')
+
+
 if __name__ == "__main__":
     while True:
         display_home_screen()
@@ -120,6 +130,7 @@ if __name__ == "__main__":
         if choice == "1":
             display = create_display(secret_word)
             while not game_over:
+                clear_screen()
                 print(hangman_picture.lives_left[lives])
                 print(display)
                 guessed_letter = guess_letter()
@@ -137,7 +148,7 @@ if __name__ == "__main__":
                             # restart_game()
                             break
                         elif choice == "2":
-                            # clear_screen()
+                            clear_screen()
                             break
                         else:
                             print("Invalid choice. Please try again.\n")
@@ -148,3 +159,4 @@ if __name__ == "__main__":
 
         else:
             print("Invalid choice. Please try again.\n")
+            clear_screen()
