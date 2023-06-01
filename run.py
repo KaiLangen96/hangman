@@ -30,11 +30,11 @@ def guess_letter():
     guess_letter = input("Please guess a letter and confirm with Enter: \n")
     if len(guess_letter) > 1:
         print("You entered more than one letter!")
-        print("Please enter only one letter and confirm with Enter.")
+        print("Please enter only one letter and confirm with Enter.\n")
         return False
     if guess_letter.isalpha() is False:
         print("You have entered a non-alphabetic character.")
-        print("Enter only one alphabetic letter and confirm with Enter.")
+        print("Enter only one alphabetic letter and confirm with Enter.\n")
         return False
     if guess_letter in already_used:
         print(f"{guess_letter} has already been used.")
@@ -77,17 +77,43 @@ def check_game(guessed_letter, secret_word, display):
     return False
 
 
+def display_home_screen():
+    """
+    Displays the home screen with options to start or quit the game.
+    """
+    print("*" * 60)
+    print()
+    print("*{:^58}*".format("Hangman Game"))
+    print()
+    print("*" * 60)
+    print(hangman_picture.lives_left[0])
+    print("*" * 60)
+    print("*{:^58}*".format("Options:"))
+    print("*{:^58}*".format("1. Start Game"))
+    print("*{:^58}*".format("2. Quit"))
+    print()
+    print("*" * 60)
+
+
 if __name__ == "__main__":
-    print("\n    Welcome to Hangman!")
-    print(hangman_picture.lives_left[lives])
-    print("Your word is:")
-    display = create_display(secret_word)
-    print(display)
-    # Hangman game loop
-    while not game_over:
-        guessed_letter = guess_letter()
-        while guessed_letter is False:
-            guessed_letter = guess_letter()
-        display = update_display(secret_word, guessed_letter, display)
-        print(display)
-        game_over = check_game(guessed_letter, secret_word, display)
+    while True:
+        display_home_screen()
+        choice = input("Enter your choice:\n")
+
+        if choice == "1":
+            display = create_display(secret_word)
+            while not game_over:
+                print(hangman_picture.lives_left[lives])
+                print(display)
+                guessed_letter = guess_letter()
+                while guessed_letter is False:
+                    guessed_letter = guess_letter()
+                display = update_display(secret_word, guessed_letter, display)
+                print(display)
+                game_over = check_game(guessed_letter, secret_word, display)
+
+        elif choice == "2":
+            break
+
+        else:
+            print("Invalid choice. Please try again.\n")
