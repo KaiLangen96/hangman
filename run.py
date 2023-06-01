@@ -188,7 +188,7 @@ if __name__ == "__main__":
 
                     while True:
                         display_game_over_screen(result)
-                        choice = input("Enter your choice: ")
+                        choice = input("Enter your choice:\n")
 
                         if choice == "1":
                             restart_game()
