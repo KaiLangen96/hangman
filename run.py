@@ -87,7 +87,7 @@ def display_home_screen():
     """
     print("*" * 60)
     print()
-    print("*{:^58}*".format("Hangman Game"))
+    print("*{:^58}*".format("Welcome to my Animal Hangman Game"))
     print()
     print("*" * 60)
     print(hangman_picture.lives_left[0])
@@ -105,7 +105,7 @@ def display_ingame_screen():
     """
     print("*" * 60)
     print()
-    print("*{:^58}*".format("Welcome to Hangman!"))
+    print("*{:^58}*".format("Guess the animal!"))
     print()
     print("*" * 60)
     print(hangman_picture.lives_left[lives])
