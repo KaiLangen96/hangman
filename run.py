@@ -112,7 +112,6 @@ def display_ingame_screen():
     print(hangman_picture.lives_left[lives])
     print("*" * 60)
     print("*{:^58}*".format("Your word is:"))
-    print()
     print(display)
     print()
     print("*" * 60)
@@ -130,7 +129,8 @@ def display_game_over_screen(result):
 
     if result == "lose":
         print("*{:^67}*".format("\033[91mGame over! You lost!\033[0m"))
-
+        
+    print("\n" + "*" * 60)
     print(hangman_picture.lives_left[lives])
     print("*{:^67}*".format(f"Your word was \033[33m{secret_word}\033[0m"))
     print("*" * 60)
