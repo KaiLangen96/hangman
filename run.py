@@ -112,7 +112,7 @@ def display_ingame_screen():
     print("*" * 60)
     print("*{:^58}*".format("Your word is:"))
     print(display)
-    print()
+    print(f"Used words: {already_used}")
     print("*" * 60)
 
 
