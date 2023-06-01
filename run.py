@@ -94,9 +94,9 @@ def display_home_screen():
     print(hangman_picture.lives_left[0])
     print("*" * 60)
     print("*{:^58}*".format("Options:"))
+    print()
     print("*{:^58}*".format("1. Start Game"))
     print("*{:^58}*".format("2. Quit"))
-    print()
     print("*" * 60)
 
 
@@ -123,13 +123,14 @@ def display_game_over_screen(result):
     """
     clear_screen()
     print("\n" + "*" * 60)
+    print()
 
     if result == "win":
         print("*{:^67}*".format("\033[92mCongratulations! You won!\033[0m"))
 
     if result == "lose":
         print("*{:^67}*".format("\033[91mGame over! You lost!\033[0m"))
-        
+
     print("\n" + "*" * 60)
     print(hangman_picture.lives_left[lives])
     print("*{:^67}*".format(f"Your word was \033[33m{secret_word}\033[0m"))
