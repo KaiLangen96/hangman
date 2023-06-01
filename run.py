@@ -11,6 +11,7 @@ lives = 6
 game_over = False
 guessed_letter = ''
 already_used = []
+result = ''
 
 
 def create_display(secret_word):
@@ -61,19 +62,16 @@ def check_game(guessed_letter, secret_word, display):
     Checks the game status after each guess and prints appropriate messages.
     Returns the game over status.
     """
-    global lives
+    global lives, result
     if guessed_letter not in secret_word:
         lives -= 1
         if lives == 0:
-            print(hangman_picture.lives_left[lives])
-            print("Game over! You lose!")
+            result = 'lose'
             return True
 
     if '_' not in display:
-        print("Congratulations! You win!")
+        result = 'win'
         return True
-
-    print(hangman_picture.lives_left[lives])
     return False
 
 
@@ -95,6 +93,25 @@ def display_home_screen():
     print("*" * 60)
 
 
+def display_game_over_screen(result):
+    """
+    Displays the game over screen for winning or losing.
+    """
+    # clear_screen()
+    print("\n" + "*" * 60)
+    if result == "win":
+        print("*{:^58}*".format("Congratulations! You won!"))
+    elif result == "lose":
+        print("*{:^58}*".format("Game over! You lost!"))
+    print(hangman_picture.lives_left[lives])
+    print("*{:^58}*".format(f"Your word was {secret_word}"))
+    print("*" * 60)
+    print("*{:^58}*".format("Do you want to..."))
+    print("*{:^58}*".format("1. Play Again?"))
+    print("*{:^58}*".format("2. Go back to Menu?"))
+    print("*" * 60)
+
+
 if __name__ == "__main__":
     while True:
         display_home_screen()
@@ -111,6 +128,20 @@ if __name__ == "__main__":
                 display = update_display(secret_word, guessed_letter, display)
                 print(display)
                 game_over = check_game(guessed_letter, secret_word, display)
+
+                if game_over:
+                    while True:
+                        display_game_over_screen(result)
+                        choice = input("Enter your choice: ")
+                        if choice == "1":
+                            # restart_game()
+                            break
+                        elif choice == "2":
+                            # clear_screen()
+                            break
+                        else:
+                            print("Invalid choice. Please try again.\n")
+                continue
 
         elif choice == "2":
             break
