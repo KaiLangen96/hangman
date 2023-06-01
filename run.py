@@ -25,7 +25,7 @@ def create_display(secret_word):
 def guess_letter():
     """
     Getting the guess from the user and checking if the input was valid.
-    A valid input is only one aplhabetic letter.
+    A valid input is only one alphabetic letter.
     """
     guess_letter = input("Please guess a letter and confirm with Enter:\n")
 
@@ -34,7 +34,7 @@ def guess_letter():
         print("Please enter only one letter.\033[0m\n")
         return False
 
-    if guess_letter.isalpha() is False:
+    if not guess_letter.isalpha():
         print("\033[91mYou have entered a non-alphabetic character.")
         print("Enter only one alphabetic letter.\033[0m\n")
         return False
@@ -52,8 +52,7 @@ def update_display(secret_word, guessed_letter, display):
     """
     Updates the display based on the guessed letter.
     """
-    for position in range(len(secret_word)):
-        letter = secret_word[position]
+    for position, letter in enumerate(secret_word):
 
         if letter == guessed_letter:
             display[position] = guessed_letter
