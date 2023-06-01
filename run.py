@@ -1,14 +1,10 @@
-import words
 import random
 import hangman_picture
 import os
 from time import sleep
+from words import animals
 
-with open("words.py", "r") as file:
-    word_list = file.read().splitlines()
-
-word_list = ["beach plum"]
-secret_word = random.choice(word_list)
+secret_word = random.choice(animals)
 display = []
 lives = 6
 game_over = False
@@ -150,7 +146,7 @@ def restart_game():
     """
     global secret_word, display, lives, game_over, guessed_letter, already_used
 
-    secret_word = random.choice(word_list)
+    secret_word = random.choice(animals)
     display = create_display(secret_word)
     lives = 6
     game_over = False
