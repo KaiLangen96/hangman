@@ -95,6 +95,24 @@ def display_home_screen():
     print("*" * 60)
 
 
+def display_ingame_screen():
+    """
+    Displays the screen during the game.
+    """
+    print("*" * 60)
+    print()
+    print("*{:^58}*".format("Welcome to Hangman!"))
+    print()
+    print("*" * 60)
+    print(hangman_picture.lives_left[lives])
+    print("*" * 60)
+    print("*{:^58}*".format("Your word is:"))
+    print()
+    print(display)
+    print()
+    print("*" * 60)
+
+
 def display_game_over_screen(result):
     """
     Displays the game over screen for winning or losing.
@@ -144,8 +162,7 @@ if __name__ == "__main__":
             restart_game()
             while not game_over:
                 clear_screen()
-                print(hangman_picture.lives_left[lives])
-                print(display)
+                display_ingame_screen()
                 guessed_letter = guess_letter()
                 while guessed_letter is False:
                     guessed_letter = guess_letter()
