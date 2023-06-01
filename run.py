@@ -1,9 +1,13 @@
+import words
 import random
 import hangman_picture
 import os
 from time import sleep
 
-word_list = ["test", "monkey", "apple"]
+with open("words.py", "r") as file:
+    word_list = file.read().splitlines()
+
+word_list = ["beach plum"]
 secret_word = random.choice(word_list)
 display = []
 lives = 6
@@ -112,7 +116,7 @@ def display_ingame_screen():
     print("*" * 60)
     print("*{:^58}*".format("Your word is:"))
     print(display)
-    print(f"Used words: {already_used}")
+    print(f"\033[90mUsed: {already_used}\033[0m")
     print("*" * 60)
 
 
