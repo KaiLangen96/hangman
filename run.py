@@ -249,6 +249,7 @@ if __name__ == "__main__":
                             save_user_score(score)
                             print("Highscore saved!")
                             print("Going back to menu...")
+                            sleep(5)
                             break
                         if choice == "3":
                             clear_screen()
