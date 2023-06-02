@@ -91,35 +91,35 @@ def display_home_screen():
     """
     Displays the home screen with options to start or quit the game.
     """
-    print("*" * 60)
+    print("*" * 72)
     print()
-    print("*{:^58}*".format("Welcome to my Animal Hangman Game"))
+    print("*{:^70}*".format("Welcome to my Animal Hangman Game"))
     print()
-    print("*" * 60)
+    print("*" * 72)
     print(hangman_picture.lives_left[0])
-    print("*" * 60)
-    print("*{:^58}*".format("Options:"))
-    print("*{:^58}*".format("1. Start Game"))
-    print("*{:^58}*".format("2. Highscores"))
-    print("*{:^58}*".format("3. Quit"))
-    print("*" * 60)
+    print("*" * 72)
+    print("*{:^70}*".format("Options:"))
+    print("*{:^70}*".format("1. Start Game"))
+    print("*{:^70}*".format("2. Highscores"))
+    print("*{:^70}*".format("3. Quit"))
+    print("*" * 72)
 
 
 def display_ingame_screen():
     """
     Displays the screen during the game.
     """
-    print("*" * 60)
+    print("*" * 72)
     print()
-    print("*{:^58}*".format("Guess the animal!"))
+    print("*{:^70}*".format("Guess the animal!"))
     print()
-    print("*" * 60)
+    print("*" * 72)
     print(hangman_picture.lives_left[lives])
-    print("*" * 60)
-    print("*{:^58}*".format("Your animal is:"))
-    print("*{:^58}*".format(f"{display}"))
-    print("*{:^67}*".format(f"\033[90mUsed: {already_used}\033[0m"))
-    print("*" * 60)
+    print("*" * 72)
+    print("*{:^70}*".format("Your animal is:"))
+    print("*{:^70}*".format(f"{display}"))
+    print("*{:^79}*".format(f"\033[90mUsed: {already_used}\033[0m"))
+    print("*" * 72)
 
 
 def display_game_over_screen(result):
@@ -127,39 +127,39 @@ def display_game_over_screen(result):
     Displays the game over screen for winning or losing.
     """
     clear_screen()
-    print("\n" + "*" * 60)
+    print("*" * 72)
     print()
     if result == "win":
-        print("*{:^67}*".format("\033[92mCongratulations! You won!\033[0m"))
+        print("*{:^79}*".format("\033[92mCongratulations! You won!\033[0m"))
     if result == "lose":
-        print("*{:^67}*".format("\033[91mGame over! You lost!\033[0m"))
-    print("\n" + "*" * 60)
+        print("*{:^79}*".format("\033[91mGame over! You lost!\033[0m"))
+    print("\n" + "*" * 72)
     print(hangman_picture.lives_left[lives])
-    print("*{:^67}*".format(f"Your word was \033[33m{secret_word}\033[0m"))
-    print("*" * 60)
-    print("*{:^58}*".format("Do you want to..."))
-    print("*{:^58}*".format("1. Play Again?"))
-    print("*{:^58}*".format("2. Save your score?"))
-    print("*{:^58}*".format("3. Go back to Menu?"))
-    print("*" * 60)
+    print("*{:^79}*".format(f"Your word was \033[33m{secret_word}\033[0m"))
+    print("*" * 72)
+    print("*{:^70}*".format("Do you want to..."))
+    print("*{:^70}*".format("1. Play Again?"))
+    print("*{:^70}*".format("2. Save your score?"))
+    print("*{:^70}*".format("3. Go back to Menu?"))
+    print("*" * 72)
 
 
 def display_highscore_screen():
     """
     Displays the highscores of the top ten players.
     """
-    print("*" * 60)
+    print("*" * 72)
     print()
-    print("*{:^58}*".format("Top 10 Highscores!"))
+    print("*{:^70}*".format("Top 10 Highscores!"))
     print()
-    print("*" * 60)
-    print("*{:^58}*".format("HIGHSCORES"))
+    print("*" * 72)
+    print("*{:^70}*".format("HIGHSCORES"))
     top_ten_scores()
-    print("*" * 60)
-    print("*{:^58}*".format("Good Luck in your game!"))
-    print("*{:^58}*".format("Each remaining live will be 15 Points!"))
-    print("*{:^58}*".format("Highest possible score: 90 Points"))
-    print("*" * 60)
+    print("*" * 72)
+    print("*{:^70}*".format("Each remaining live will be 15 Points!"))
+    print("*{:^70}*".format("Highest possible score: 90 Points"))
+    print("*{:^70}*".format("Good Luck in your game!"))
+    print("*" * 72)
 
 
 def top_ten_scores():
@@ -169,7 +169,7 @@ def top_ten_scores():
     scores_sheet = SHEET.worksheet("scores").get_all_values()[1:]
     ordered_scores = sorted(scores_sheet, key=lambda d: int(d[1]))
     for high_score in reversed(ordered_scores[-10:]):
-        print("*{:^58}*".format(f"{high_score[0]}: {high_score[1]}"))
+        print("*{:^70}*".format(f"{high_score[0]}: {high_score[1]}"))
 
 
 def save_user_score(score):
@@ -232,7 +232,7 @@ if __name__ == "__main__":
                             save_user_score(score)
                             print("Highscore saved!")
                             print("Going back to menu...")
-                            sleep(5)
+                            sleep(3)
                             break
                         if choice == "3":
                             clear_screen()
