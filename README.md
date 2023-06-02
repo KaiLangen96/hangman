@@ -1,6 +1,6 @@
 # Animal Hangman Game in Python
   
- ![Screenshot of the main screen in the terminal](https://cdn.discordapp.com/attachments/1049024982694498367/1114144896002031696/image.png) 
+ ![Screenshot of the main screen in the terminal](https://cdn.discordapp.com/attachments/1049024982694498367/1114303161172234290/image.png) 
   
  Welcome to my animal themed hangman game.
  View the live project [here](https://hangman-kai.herokuapp.com/)
@@ -29,10 +29,11 @@
   
          1. As a Returning User, I want to be able to access and view the game quickly and easily. 
          2. As a Returning User, I want to be able to guess new animals.
-  
+
      -   #### Frequent User Goals 
   
          1. As a Frequent User, I want to be able to find different categories and/or difficulties to keep the game interesting. 
+         2. As a Frequent User, I want to be able to save my score and compete against others in the leader board.
   
   
  ## Features 
@@ -42,16 +43,16 @@
  - _F01 Main Screen_ 
   
      - At the start of the game you will be directed to the main menu. 
-     - From here you have two options to choose from.
+     - From here you have three options to choose from.
   
- ![Screenshot of the main menu](https://cdn.discordapp.com/attachments/1049024982694498367/1114144896002031696/image.png) 
+ ![Screenshot of the main menu](https://cdn.discordapp.com/attachments/1049024982694498367/1114303426923335780/image.png) 
   
  - _F02 Menu_ 
   
      - The user must choose an option from the menu to continue. 
      - The user will see an error if they do not enter a valid option. 
   
- ![Screenshot of the options and an error](https://cdn.discordapp.com/attachments/1049024982694498367/1114145431987961926/image.png) 
+ ![Screenshot of the options with a faulty input resulting in an error](https://cdn.discordapp.com/attachments/1049024982694498367/1114304344028872714/image.png) 
   
  - _F03 Ingame screen_ 
   
@@ -60,7 +61,7 @@
      - The user can see which letters have been guessed correctly
      - The user can see a hangman graphic indicating the current lives left. 
   
- ![Screenshots of the ingame screen after the input of all vowels](https://cdn.discordapp.com/attachments/1049024982694498367/1114146547400179722/image.png) 
+ ![Screenshots of the ingame screen after the input of all vowels](https://cdn.discordapp.com/attachments/1049024982694498367/1114304741082665070/image.png) 
   
  - _F04 End game screen_ 
   
@@ -68,17 +69,31 @@
      - Underneith the current hangman picture the user can see the animal they were guessing.
      - From here the user can choose to play again or go back to the main menu.
  
- ![Screenshot of the victory screen](https://cdn.discordapp.com/attachments/1049024982694498367/1114147882581381120/image.png)
+ ![Screenshot of the victory screen](https://media.discordapp.net/attachments/1049024982694498367/1114305109602607144/image.png)
   
+ - _F05 Submitting users score_ 
+
+     - After playing a full game the user has the chance to submit their score.
+     - The score will be saved to an external [google spread sheet](https://docs.google.com/spreadsheets/d/1JcjePGRrhzi-rMYGhRxBmu7SjgNCYYw3jtnmtMeGE4k/edit?usp=sharing).
+     - After a short delay of 3 seconds the user gets send back to the main menu.
+
+ ![Screenshot of user submitting their score](https://cdn.discordapp.com/attachments/1049024982694498367/1114306289766514698/image.png)
+
+  - _F06 The leader board_
+
+     - From the main manu the user can open the Highscores with the input "2"
+     - Only the top ten players will be shown in the Highscores.
+
+ ![Screenshot of the current Highscores](https://cdn.discordapp.com/attachments/1049024982694498367/1114307345477021696/image.png)   
+
  #### Future Features 
   
  - Categories and levels can be added for future development to ensure return users are getting value and finding new things to keep them interested. 
- - Tracking the score and username of the user to implement a leader board.
   
  ## Design 
   
  -   ### Imagery 
-     -   The hangman images and screen layouts are all done by myself with the help of ChatGPT.
+     -   The hangman images and screen layouts are all done by myself with the help of ChatGPT. The layout needed adjustments later on.
  ![Screenshot of the chat with ChatGPT](https://cdn.discordapp.com/attachments/1049024982694498367/1114149291041226792/image.png)
   
  -   ### Color 
@@ -90,7 +105,7 @@
   
  -   ### Flow chart 
   
-     ![Screenshot of the Flowchart](https://cdn.discordapp.com/attachments/1049024982694498367/1114182422179876926/image.png) 
+     ![Screenshot of the Flowchart](https://cdn.discordapp.com/attachments/978011606271262820/1114313489524215858/image.png) 
   
   
  ## Technologies Used 
@@ -103,7 +118,13 @@
   
  * [random](https://docs.python.org/3/library/random.html?highlight=random#module-random) - to select random words  
   
- * [time](https://docs.python.org/3/library/time.html?highlight=time#module-time) - to add a short timer into the clear function so the screen pauses for 2 seconds before clearing the terminal. 
+ * sleep from [time](https://docs.python.org/3/library/time.html?highlight=time#module-time) - to add a short timer into the clear function so the screen pauses for 2 seconds before clearing the terminal. 
+
+ * [os](https://docs.python.org/3/library/os.html?highlight=os#module-os) - to add a clear function to refresh the terminal output.
+
+ * [gspread](https://docs.gspread.org/en/latest/) - to add an external spread sheet in which the user scores are saved.
+
+ * Credentials from [google.oauth2.service_account](https://google-auth.readthedocs.io/en/stable/reference/google.oauth2.credentials.html) - to be able to edit the external sheet.
 
   
  ### Frameworks, Libraries & Programs Used 
@@ -128,9 +149,9 @@
   
   - Code Institutes [Python Validator](https://pep8ci.herokuapp.com) 
   
-     - latest test ~13.30 02.06.2023 
+     - latest test ~23.20 02.06.2023 
   
-     ![Screenshot of the latest test results](https://cdn.discordapp.com/attachments/1049024982694498367/1114155518081118278/image.png) 
+     ![Screenshot of the latest test results](https://cdn.discordapp.com/attachments/1049024982694498367/1114302621407268864/image.png) 
  
  ### Additional Testing Comments
  
@@ -189,4 +210,4 @@
 
 [Lucidchart](https://www.lucidchart.com/), helping me to create the flow chart.
 
-[Antonio Rodríguez](https://www.linkedin.com/in/antonio-rodr%C3%ADguez-bb9b99b7/), as my mentor. Once again, he helped me a lot getting started with the memory game and laying out a plan.
+[Antonio Rodríguez](https://www.linkedin.com/in/antonio-rodr%C3%ADguez-bb9b99b7/), as my mentor. He is an absolute legend and an immense help in creating my projects.
