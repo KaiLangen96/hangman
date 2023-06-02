@@ -44,21 +44,17 @@ def guess_letter():
     A valid input is only one alphabetic letter.
     """
     guess_letter = input("Please guess a letter and confirm with Enter:\n")
-
     if len(guess_letter) > 1:
         print("\033[91mYou entered more than one letter!")
         print("Please enter only one letter.\033[0m\n")
         return False
-
     if not guess_letter.isalpha():
         print("\033[91mYou have entered a non-alphabetic character.")
         print("Enter only one alphabetic letter.\033[0m\n")
         return False
-
     if guess_letter in already_used:
         print(f"\033[91m{guess_letter} has already been used.\033[0m")
         return False
-
     guessed_letter = guess_letter.lower()
     already_used.append(guessed_letter)
     return guessed_letter
@@ -69,10 +65,8 @@ def update_display(secret_word, guessed_letter, display):
     Updates the display based on the guessed letter.
     """
     for position, letter in enumerate(secret_word):
-
         if letter == guessed_letter:
             display[position] = guessed_letter
-
     return display
 
 
@@ -82,18 +76,14 @@ def check_game(guessed_letter, secret_word, display):
     Returns the game over status.
     """
     global lives, result
-
     if guessed_letter not in secret_word:
         lives -= 1
-
         if lives == 0:
             result = 'lose'
             return True
-
     if '_' not in display:
         result = 'win'
         return True
-
     return False
 
 
@@ -139,13 +129,10 @@ def display_game_over_screen(result):
     clear_screen()
     print("\n" + "*" * 60)
     print()
-
     if result == "win":
         print("*{:^67}*".format("\033[92mCongratulations! You won!\033[0m"))
-
     if result == "lose":
         print("*{:^67}*".format("\033[91mGame over! You lost!\033[0m"))
-
     print("\n" + "*" * 60)
     print(hangman_picture.lives_left[lives])
     print("*{:^67}*".format(f"Your word was \033[33m{secret_word}\033[0m"))
@@ -170,8 +157,8 @@ def display_highscore_screen():
     top_ten_scores()
     print("*" * 60)
     print("*{:^58}*".format("Good Luck in your game!"))
-    print("*{:^58}*".format("I'm sure you can make it"))
-    print("*{:^58}*".format("into the highscores!"))
+    print("*{:^58}*".format("Each remaining live will be 15 Points!"))
+    print("*{:^58}*".format("Highest possible score: 90 Points"))
     print("*" * 60)
 
 
@@ -201,7 +188,6 @@ def restart_game():
     Resets the game variables for a new game.
     """
     global secret_word, display, lives, game_over, guessed_letter, already_used
-
     secret_word = random.choice(animals)
     display = create_display(secret_word)
     lives = 6
@@ -229,14 +215,11 @@ if __name__ == "__main__":
                 clear_screen()
                 display_ingame_screen()
                 guessed_letter = guess_letter()
-
                 while guessed_letter is False:
                     guessed_letter = guess_letter()
-
                 display = update_display(secret_word, guessed_letter, display)
                 print(display)
                 game_over = check_game(guessed_letter, secret_word, display)
-
                 if game_over:
                     while True:
                         display_game_over_screen(result)
