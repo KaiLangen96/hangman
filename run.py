@@ -109,9 +109,9 @@ def display_home_screen():
     print(hangman_picture.lives_left[0])
     print("*" * 60)
     print("*{:^58}*".format("Options:"))
-    print()
     print("*{:^58}*".format("1. Start Game"))
-    print("*{:^58}*".format("2. Quit"))
+    print("*{:^58}*".format("2. Highscores"))
+    print("*{:^58}*".format("3. Quit"))
     print("*" * 60)
 
 
@@ -136,7 +136,6 @@ def display_game_over_screen(result):
     """
     Displays the game over screen for winning or losing.
     """
-    clear_screen()
     print("\n" + "*" * 60)
     print()
 
@@ -170,6 +169,27 @@ def restart_game():
     already_used = []
 
 
+def display_highscore_screen():
+    """
+    Displays the highscores of the top ten players.
+    """
+    print("*" * 60)
+    print("*{:^58}*".format("Top 10 Highscores!"))
+    print("*" * 60)
+    top_ten_scores()
+    print("*" * 60)
+
+
+def top_ten_scores():
+    """
+    Displays the top 10 scores, saved in an external document.
+    """
+    scores_sheet = SHEET.worksheet("scores").get_all_values()[1:]
+    ordered_scores = sorted(scores_sheet, key=lambda d: int(d[1]))
+    for high_score in reversed(ordered_scores[-10:]):
+        print("*{:^58}*".format(f"{high_score[0]}: {high_score[1]}"))
+
+
 def clear_screen():
     """
     Function to clear terminal
@@ -198,13 +218,10 @@ if __name__ == "__main__":
                 display = update_display(secret_word, guessed_letter, display)
                 print(display)
                 game_over = check_game(guessed_letter, secret_word, display)
-
                 if game_over:
-
                     while True:
                         display_game_over_screen(result)
                         choice = input("Enter your choice:\n")
-
                         if choice == "1":
                             restart_game()
                             break
@@ -214,11 +231,18 @@ if __name__ == "__main__":
                         else:
                             print("\033[91mInvalid choice.")
                             print("Please try again.\033[0m\n")
-                continue
-
-        elif choice == "2":
+                    continue
+        if choice == "2":
+            clear_screen()
+            display_highscore_screen()
+            while True:
+                choice = input("Press Enter to go back to the menu\n")
+                if choice == "":
+                    break
+                else:
+                    print("\033[91mPress only Enter!\033[0m\n")
+            continue
+        if choice == "3":
             break
-
         else:
             print("\033[91mInvalid choice. Please try again.\033[0m\n")
-            clear_screen()
