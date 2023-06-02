@@ -101,7 +101,7 @@
      -   I chose red for error messages and the Game Over in the end screen. Red is, because of its long wavelength, one of the most visible colors in the spectrum and therefore often used for warnings.
      -   I chose yellow to reveal the animal in the end screen because next to red it stands out the most.
      -   I chose green for the Congratulations message in the end screen since the color usually represents good things.
- ![Screenshot of the chat with ChatGPT](https://cdn.discordapp.com/attachments/1049024982694498367/1114150106732703824/image.png)
+ ![Screenshot of the chat with ChatGPT](https://cdn.discordapp.com/attachments/1049024982694498367/1114314885594091621/image.png)
   
  -   ### Flow chart 
   
