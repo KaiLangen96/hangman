@@ -3,7 +3,7 @@
  ![Screenshot of the main screen in the terminal](https://cdn.discordapp.com/attachments/1049024982694498367/1114144896002031696/image.png) 
   
  Welcome to my animal themed hangman game.
- View the live project [here](https://cdn.discordapp.com/attachments/1049024982694498367/1114143280020602940/image.png)
+ View the live project [here](https://hangman-kai.herokuapp.com/)
   
   
  ## Table of Contents
@@ -187,6 +187,6 @@
 
 [w3schools](https://www.w3schools.com/), for so many helpful pages and tools to support learning python.
 
-[Flow Chart](https://www.lucidchart.com/), helping me to create the flow chart.
+[Lucidchart](https://www.lucidchart.com/), helping me to create the flow chart.
 
 [Antonio Rodríguez](https://www.linkedin.com/in/antonio-rodr%C3%ADguez-bb9b99b7/), as my mentor. Once again, he helped me a lot getting started with the memory game and laying out a plan.
