@@ -1,8 +1,24 @@
+# external imports
+import gspread
+from google.oauth2.service_account import Credentials
+
+# internal imports
 import random
 import hangman_picture
 import os
 from time import sleep
 from words import animals
+
+SCOPE = [
+    "https://www.googleapis.com/auth/spreadsheets",
+    "https://www.googleapis.com/auth/drive.file",
+    "https://www.googleapis.com/auth/drive"
+]
+
+CREDS = Credentials.from_service_account_file('creds.json')
+SCOPED_CREDS = CREDS.with_scopes(SCOPE)
+GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
+SHEET = GSPREAD_CLIENT.open('Hangman_Highscores')
 
 secret_word = random.choice(animals)
 display = []
