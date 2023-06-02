@@ -162,9 +162,16 @@ def display_highscore_screen():
     Displays the highscores of the top ten players.
     """
     print("*" * 60)
+    print()
     print("*{:^58}*".format("Top 10 Highscores!"))
+    print()
     print("*" * 60)
+    print("*{:^58}*".format("HIGHSCORES"))
     top_ten_scores()
+    print("*" * 60)
+    print("*{:^58}*".format("Good Luck in your game!"))
+    print("*{:^58}*".format("I'm sure you can make it"))
+    print("*{:^58}*".format("into the highscores!"))
     print("*" * 60)
 
 
