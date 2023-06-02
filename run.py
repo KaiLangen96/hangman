@@ -127,8 +127,8 @@ def display_ingame_screen():
     print(hangman_picture.lives_left[lives])
     print("*" * 60)
     print("*{:^58}*".format("Your animal is:"))
-    print(display)
-    print(f"\033[90mUsed: {already_used}\033[0m")
+    print("*{:^58}*".format(f"{display}"))
+    print("*{:^67}*".format(f"\033[90mUsed: {already_used}\033[0m"))
     print("*" * 60)
 
 
@@ -136,6 +136,7 @@ def display_game_over_screen(result):
     """
     Displays the game over screen for winning or losing.
     """
+    clear_screen()
     print("\n" + "*" * 60)
     print()
 
@@ -151,22 +152,9 @@ def display_game_over_screen(result):
     print("*" * 60)
     print("*{:^58}*".format("Do you want to..."))
     print("*{:^58}*".format("1. Play Again?"))
-    print("*{:^58}*".format("2. Go back to Menu?"))
+    print("*{:^58}*".format("2. Save your score?"))
+    print("*{:^58}*".format("3. Go back to Menu?"))
     print("*" * 60)
-
-
-def restart_game():
-    """
-    Resets the game variables for a new game.
-    """
-    global secret_word, display, lives, game_over, guessed_letter, already_used
-
-    secret_word = random.choice(animals)
-    display = create_display(secret_word)
-    lives = 6
-    game_over = False
-    guessed_letter = ''
-    already_used = []
 
 
 def display_highscore_screen():
@@ -190,23 +178,46 @@ def top_ten_scores():
         print("*{:^58}*".format(f"{high_score[0]}: {high_score[1]}"))
 
 
+def save_user_score(score):
+    """
+    Function to save the players score and
+    upload it to a google spreadsheet.
+    """
+    username = input("Enter your username:\n")
+    print("Saving your score...")
+    scores_sheet = SHEET.worksheet("scores")
+    scores_sheet.append_row([username, score])
+
+
+def restart_game():
+    """
+    Resets the game variables for a new game.
+    """
+    global secret_word, display, lives, game_over, guessed_letter, already_used
+
+    secret_word = random.choice(animals)
+    display = create_display(secret_word)
+    lives = 6
+    game_over = False
+    guessed_letter = ''
+    already_used = []
+
+
 def clear_screen():
     """
-    Function to clear terminal
+    Function to clear terminal.
     """
     sleep(1)
     os.system('cls' if os.name == 'nt' else 'clear')
 
 
 if __name__ == "__main__":
-
     while True:
+        clear_screen()
         display_home_screen()
         choice = input("Enter your choice:\n")
-
         if choice == "1":
             restart_game()
-
             while not game_over:
                 clear_screen()
                 display_ingame_screen()
@@ -218,20 +229,29 @@ if __name__ == "__main__":
                 display = update_display(secret_word, guessed_letter, display)
                 print(display)
                 game_over = check_game(guessed_letter, secret_word, display)
+
                 if game_over:
                     while True:
                         display_game_over_screen(result)
-                        choice = input("Enter your choice:\n")
+                        choice = input("I want to...\n")
                         if choice == "1":
                             restart_game()
                             break
-                        elif choice == "2":
+                        if choice == "2":
+                            score = lives * 15
+                            save_user_score(score)
+                            print("Highscore saved!")
+                            print("Going back to menu...")
+                            break
+                        if choice == "3":
                             clear_screen()
+                            display_home_screen()
                             break
                         else:
                             print("\033[91mInvalid choice.")
                             print("Please try again.\033[0m\n")
                     continue
+            continue
         if choice == "2":
             clear_screen()
             display_highscore_screen()
